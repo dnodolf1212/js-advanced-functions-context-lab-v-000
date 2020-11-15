@@ -9,6 +9,60 @@
  for you to use if you need it!
  */
 
+
+
+function createEmployeeRecord(arr){
+    let record;
+    return record = {
+      firstName: arr[0],
+      familyName: arr[1],
+      title: arr[2],
+      payPerHour: arr[3],
+      timeInEvents: [],
+      timeOutEvents: []
+    }
+  }
+
+  function createEmployeeRecords(arrays){ 
+    return arrays.map(createEmployeeRecord);
+  }
+
+let createTimeInEvent = function(dateStamp){
+    let [date, hour] = dateStamp.split(' ')
+    this.timeInEvents.push({
+        type: "TimeIn",
+        hour: parseInt(hour, 10),
+        date,
+    })
+    return this
+}
+
+let createTimeOutEvent = function(dateStamp){
+    let [date, hour] = dateStamp.split(' ')
+    this.timeOutEvents.push({
+        type: "TimeOut",
+        hour: parseInt(hour, 10),
+        date,
+    })
+    return this
+}
+
+//function hoursWorkedOnDate(employeeRec, dateStamp){
+//    const timeIn = employeeRec.timeInEvents.find((e) => 
+//    e.date === dateStamp).hour
+//    const timeOut = employeeRec.timeOutEvents.find((e) => 
+//    e.date === dateStamp).hour
+//    return (timeOut - timeIn)/100
+//  }
+let hoursWorkedOnDate = function(dateStamp){
+    const timeIn = this.timeInEvents.find((e) => 
+    e.date === dateStamp).hour;
+    const timeOut = this.timeOutEvents.find((e) => 
+    e.date === dateStamp).hour
+    return (timeOut - timeIn)/100
+}
+
+
 let allWagesFor = function () {
     let eligibleDates = this.timeInEvents.map(function (e) {
         return e.date
